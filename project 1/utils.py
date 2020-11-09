@@ -5,6 +5,8 @@ Created on Thu Nov  5 23:11:07 2020
 @author: rapha
 """
 import numpy as np
+import pandas as pd
+import os.path
 
 
 def accuracy(y_true, y_pred):
@@ -80,3 +82,12 @@ def evaluation(y_true, y_pred):
     spec = tn/(fp+tn)
     
     return (pc_correct, sens, spec, acc)
+
+def dataFrameFromURLOrFile(url, filepath, columnheader=None):
+    if os.path.isfile(filepath) == False:
+        data = np.genfromtxt(url, delimiter = ",")
+        file_df = pd.DataFrame(data=data, columns=columnheader)
+        file_df.to_csv(filepath)
+    else:
+        file_df = pd.read_csv(filepath, names=columnheader, header=0)
+    return file_df

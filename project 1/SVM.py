@@ -19,7 +19,6 @@ cleveland= np.genfromtxt("https://archive.ics.uci.edu/ml/machine-learning-databa
 hungarian = np.genfromtxt("https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.hungarian.data",
                          delimiter = ",")
 
-
 ## data cleansing and preparation for training on cleveland dataset
 # find missing values in cleveland dataset
 missing_values_c = np.argwhere(np.isnan(cleveland))
@@ -53,7 +52,7 @@ classifier.fit(x_train, y_train)
 # Testing the classifier
 y_pred = classifier.predict(x_test)
 
-# evaluate model 
+# evaluate model
 test_correct, test_sens, test_spec, test_acc = evaluation(y_test, y_pred)
 print("The percentage of correctly predicted targets is {}".format(test_correct))
 print("The test sensitivity is {}".format(test_sens))
